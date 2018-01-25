@@ -86,7 +86,9 @@ action_class do
     when /^rbx-/
       package rbx_package_deps
     else
-      package package_deps
+      package_deps.each do |name|
+        package name
+      end
     end
 
     ensure_java_environment if new_resource.version =~ /^jruby-/
